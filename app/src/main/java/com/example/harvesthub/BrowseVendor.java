@@ -2,10 +2,8 @@ package com.example.harvesthub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Xml;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -14,24 +12,18 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 public class BrowseVendor extends AppCompatActivity {
 
     Spinner vendorName;
+    private String selectedAnswer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +42,10 @@ public class BrowseVendor extends AppCompatActivity {
 
         //set the adapters
         vendorName.setAdapter(venName);
-
     }
 
     public void showInventory(View view) {
+
         //get the name of vendor to string
         String venName = vendorName.getSelectedItem().toString();
 
@@ -74,8 +66,8 @@ public class BrowseVendor extends AppCompatActivity {
             radioGroup.addView(radioButton);
         }
 
-        // Add the RadioGroup to your layout (assuming you have a LinearLayout with id "radioGroupContainer")
-        LinearLayout radioGroupContainer = findViewById(R.id.radioGroupContainer);
+        // Add the RadioGroup to your layout
+        LinearLayout radioGroupContainer = findViewById(R.id.radioGroup);
 
         // Remove all views (buttons) from the existing RadioGroup
         radioGroupContainer.removeAllViews();
@@ -83,6 +75,21 @@ public class BrowseVendor extends AppCompatActivity {
         // Add the new RadioGroup to your layout
         radioGroupContainer.addView(radioGroup);
 
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // Find the selected RadioButton by ID
+                RadioButton selectedRadioButton = findViewById(checkedId);
+
+                // Get the text of the selected RadioButton
+                selectedAnswer = (selectedRadioButton != null) ? selectedRadioButton.getText().toString() : null;
+            }
+        });
+    }
+
+    public void addCart(View view) {
+        TextView test = findViewById(R.id.testView);
+        test.setText(selectedAnswer);
     }
 
     private String[] readFromFile(String fileName) {
