@@ -2,9 +2,19 @@ package com.example.harvesthub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class BrowseVendor extends AppCompatActivity {
 
@@ -27,5 +37,58 @@ public class BrowseVendor extends AppCompatActivity {
 
         //set the adapters
         vendorName.setAdapter(venName);
+
+        String filename = "Buggers BlueBerries.txt";
+        String fileContents = "This is a test";
+        FileOutputStream outputStream;
+
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_APPEND);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
+
+    public void showInventory (View view){
+        //get the name of vendor to string
+        String venName = vendorName.getSelectedItem().toString();
+
+        String filename = venName + ".txt";
+
+        // Read from the file
+        String fileContents = readFromFile(filename);
+
+        TextView textView = findViewById(R.id.invView);
+        textView.setText(fileContents);
+    }
+
+    private String readFromFile(String fileName) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            FileInputStream fileInputStream = openFileInput(fileName);
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line).append("\n");
+            }
+
+            // Close the streams
+            bufferedReader.close();
+            inputStreamReader.close();
+            fileInputStream.close();
+
+        } catch (IOException e) {
+        e.printStackTrace();
+        Log.e("FileReadError", "Error reading file: " + e.getMessage());
+    }
+
+        return stringBuilder.toString();
+    }
+
 }
