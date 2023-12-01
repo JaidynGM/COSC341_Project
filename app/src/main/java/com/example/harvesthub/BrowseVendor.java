@@ -44,17 +44,6 @@ public class BrowseVendor extends AppCompatActivity {
         //set the adapters
         vendorName.setAdapter(venName);
 
-        String filename = "Buggers BlueBerries.txt";
-        String fileContents = "This is a test";
-        FileOutputStream outputStream;
-
-        try {
-            outputStream = openFileOutput(filename, Context.MODE_APPEND);
-            outputStream.write(fileContents.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     public void showInventory(View view) {
