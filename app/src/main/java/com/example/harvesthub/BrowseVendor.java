@@ -5,15 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Xml;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class BrowseVendor extends AppCompatActivity {
@@ -46,13 +52,12 @@ public class BrowseVendor extends AppCompatActivity {
             outputStream = openFileOutput(filename, Context.MODE_APPEND);
             outputStream.write(fileContents.getBytes());
             outputStream.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void showInventory (View view){
+    public void showInventory(View view) {
         //get the name of vendor to string
         String venName = vendorName.getSelectedItem().toString();
 
@@ -84,11 +89,9 @@ public class BrowseVendor extends AppCompatActivity {
             fileInputStream.close();
 
         } catch (IOException e) {
-        e.printStackTrace();
-        Log.e("FileReadError", "Error reading file: " + e.getMessage());
-    }
+            e.printStackTrace();
+        }
 
         return stringBuilder.toString();
     }
-
 }
