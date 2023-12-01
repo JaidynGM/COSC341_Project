@@ -18,4 +18,9 @@ public class Homepage extends AppCompatActivity {
         Intent vendor = new Intent(this, BrowseVendor.class);
         startActivity(vendor);
     }
+
+    public void addProduct (View view){
+        Intent product = new Intent(this, addProduct.class);
+        startActivity(product);
+    }
 }
