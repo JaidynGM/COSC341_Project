@@ -8,6 +8,9 @@ import android.util.Log;
 import android.util.Xml;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -59,8 +62,28 @@ public class BrowseVendor extends AppCompatActivity {
         // Read words from the file into an array
         String[] wordsArray = readFromFile(filename);
 
+        // Create a RadioGroup
+        RadioGroup radioGroup = new RadioGroup(this);
+
+        // Dynamically create a RadioButton for each word in the array
+        for (String word : wordsArray) {
+            RadioButton radioButton = new RadioButton(this);
+            radioButton.setText(word);
+
+            // You can set additional properties for the RadioButton if needed
+
+            // Add the RadioButton to the RadioGroup
+            radioGroup.addView(radioButton);
+        }
+
+        // Add the RadioGroup to your layout (assuming you have a LinearLayout with id "radioGroupContainer")
+        LinearLayout radioGroupContainer = findViewById(R.id.radioGroupContainer);
+        radioGroupContainer.addView(radioGroup);
+
+        /* If you want to display the words in a TextView, you can use Arrays.toString(wordsArray)
         TextView textView = findViewById(R.id.invView);
         textView.setText(Arrays.toString(wordsArray));
+         */
     }
 
     private String[] readFromFile(String fileName) {

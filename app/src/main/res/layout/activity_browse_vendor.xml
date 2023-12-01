@@ -69,12 +69,15 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:layout_constraintVertical_bias="0.325" />
 
-    <TextView
-        android:id="@+id/invView"
-        android:layout_width="wrap_content"
+    <RadioGroup
+        android:id="@+id/radioGroupContainer"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inventory" />
+        app:layout_constraintTop_toBottomOf="@+id/inventory"
+        app:layout_constraintVertical_bias="0.271" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
