@@ -21,6 +21,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class BrowseVendor extends AppCompatActivity {
 
@@ -52,15 +56,15 @@ public class BrowseVendor extends AppCompatActivity {
 
         String filename = venName + ".txt";
 
-        // Read from the file
-        String fileContents = readFromFile(filename);
+        // Read words from the file into an array
+        String[] wordsArray = readFromFile(filename);
 
         TextView textView = findViewById(R.id.invView);
-        textView.setText(fileContents);
+        textView.setText(Arrays.toString(wordsArray));
     }
 
-    private String readFromFile(String fileName) {
-        StringBuilder stringBuilder = new StringBuilder();
+    private String[] readFromFile(String fileName) {
+        List<String> wordList = new ArrayList<>();
 
         try {
             FileInputStream fileInputStream = openFileInput(fileName);
@@ -69,7 +73,11 @@ public class BrowseVendor extends AppCompatActivity {
 
             String line;
             while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line).append("\n");
+                // Split the line based on commas
+                String[] words = line.split(",");
+
+                // Add each word to the list
+                Collections.addAll(wordList, words);
             }
 
             // Close the streams
@@ -81,6 +89,7 @@ public class BrowseVendor extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        return stringBuilder.toString();
+        // Convert the list to an array
+        return wordList.toArray(new String[0]);
     }
 }

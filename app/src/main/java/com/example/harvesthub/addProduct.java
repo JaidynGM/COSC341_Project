@@ -20,7 +20,7 @@ public class addProduct extends AppCompatActivity {
 
         //create temporary text files with some contents
         String vendor1 = "Buggers BlueBerries.txt";
-        String fileContents1 = "BlueBerries, StrawBerries, Raspberries" ;
+        String fileContents1 = "BlueBerries $2.00/lb, StrawBerries $2.20/lb, Raspberries $3.00/lb" ;
 
         String vendor2 = "Dannys Delights.txt";
         String fileContents2 = "Waffles, Pancakes, Crepes" ;
