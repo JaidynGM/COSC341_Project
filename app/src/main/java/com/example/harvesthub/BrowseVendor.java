@@ -70,20 +70,19 @@ public class BrowseVendor extends AppCompatActivity {
             RadioButton radioButton = new RadioButton(this);
             radioButton.setText(word);
 
-            // You can set additional properties for the RadioButton if needed
-
             // Add the RadioButton to the RadioGroup
             radioGroup.addView(radioButton);
         }
 
         // Add the RadioGroup to your layout (assuming you have a LinearLayout with id "radioGroupContainer")
         LinearLayout radioGroupContainer = findViewById(R.id.radioGroupContainer);
+
+        // Remove all views (buttons) from the existing RadioGroup
+        radioGroupContainer.removeAllViews();
+
+        // Add the new RadioGroup to your layout
         radioGroupContainer.addView(radioGroup);
 
-        /* If you want to display the words in a TextView, you can use Arrays.toString(wordsArray)
-        TextView textView = findViewById(R.id.invView);
-        textView.setText(Arrays.toString(wordsArray));
-         */
     }
 
     private String[] readFromFile(String fileName) {
