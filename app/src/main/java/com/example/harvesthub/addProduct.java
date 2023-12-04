@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
 import java.io.FileOutputStream;
 
@@ -14,59 +15,40 @@ public class addProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+    }
+
+    public void back (View view){
+        finish();
+    }
+
+    public void addProduct (View view){
 
         //define ouputstream
         FileOutputStream outputStream;
 
-        //create temporary text files with some contents
-        String vendor1 = "Buggers BlueBerries.txt";
-        String fileContents1 = "BlueBerries $2.00/lb, StrawBerries $2.20/lb, Raspberries $3.00/lb" ;
+        //get vendor name to string
+        EditText Vendorname = findViewById(R.id.storeNameText);
+        String vendorName = Vendorname.getText().toString();
 
-        String vendor2 = "Dannys Delights.txt";
-        String fileContents2 = "Waffles, Pancakes, Crepes" ;
+        //get price to string
+        EditText price = findViewById(R.id.priceText);
+        String Price = price.getText().toString();
 
-        String vendor3 = "Simple Strawberries.txt";
-        String fileContents3 = "Strawberries, Blackberries, Cherries" ;
+        //get product name to string
+        EditText productName = findViewById(R.id.productNameText);
+        String ProductName = productName.getText().toString();
 
-        String vendor4 = "Beady Bananas.txt";
-        String fileContents4 = "Bananas, Pineapples, Mangoes" ;
+        String filename = vendorName + ".txt";
+        String filecontents = ProductName + " $" + Price + ".00,";
 
-        //output stream for text files
         try {
-            outputStream = openFileOutput(vendor1, Context.MODE_APPEND);
-            outputStream.write(fileContents1.getBytes());
+            outputStream = openFileOutput(filename, Context.MODE_APPEND);
+            outputStream.write(filecontents.getBytes());
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        try {
-            outputStream = openFileOutput(vendor2, Context.MODE_APPEND);
-            outputStream.write(fileContents2.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            outputStream = openFileOutput(vendor3, Context.MODE_APPEND);
-            outputStream.write(fileContents3.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            outputStream = openFileOutput(vendor4, Context.MODE_APPEND);
-            outputStream.write(fileContents4.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void back (View view){
         finish();
     }
 }
