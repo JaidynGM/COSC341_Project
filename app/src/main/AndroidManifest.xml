@@ -13,6 +13,9 @@
         android:theme="@style/Theme.HarvestHub"
         tools:targetApi="31">
         <activity
+            android:name=".Checkout"
+            android:exported="false" />
+        <activity
             android:name=".Cart"
             android:exported="false" />
         <activity
