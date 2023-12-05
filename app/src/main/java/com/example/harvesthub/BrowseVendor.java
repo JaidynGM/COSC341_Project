@@ -2,6 +2,7 @@ package com.example.harvesthub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -88,8 +89,18 @@ public class BrowseVendor extends AppCompatActivity {
     }
 
     public void addCart(View view) {
-        TextView test = findViewById(R.id.testView);
-        test.setText(selectedAnswer);
+
+        //create intent, will take products to cart page
+        Intent cart = new Intent(this, Cart.class);
+
+        //add values into bundle and onClick send them to next activity
+        Bundle bundle = new Bundle();
+        bundle.putString("products", selectedAnswer);
+
+        //Add bundle to intent
+        cart.putExtras(bundle);
+
+        startActivity(cart);
     }
 
     private String[] readFromFile(String fileName) {
