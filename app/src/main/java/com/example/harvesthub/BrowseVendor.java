@@ -163,4 +163,12 @@ public class BrowseVendor extends AppCompatActivity {
         startActivity(back);
 
     }
+
+    public void message (View view) {
+        Intent intent = new Intent(this, Messaging.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("vendorName",venName);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }
