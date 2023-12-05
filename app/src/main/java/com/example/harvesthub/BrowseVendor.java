@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,6 +29,7 @@ public class BrowseVendor extends AppCompatActivity {
     Spinner vendorName;
     private String selectedAnswer;
     private String venName;
+    private Button review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,12 @@ public class BrowseVendor extends AppCompatActivity {
 
         //set the adapters
         vendorName.setAdapter(venname);
+        review.setOnClickListener(v -> {
+            Intent intent = new Intent(BrowseVendor.this, venderReview.class);
+            String selectedVendor = vendorName.getSelectedItem().toString();
+            intent.putExtra("vendor", selectedVendor);
+            startActivity(intent);
+        });
     }
 
     public void showInventory(View view) {
