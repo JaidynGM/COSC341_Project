@@ -20,9 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Cart extends AppCompatActivity {
-
-    public double totalPrice = 0.0;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,7 +128,6 @@ public class Cart extends AppCompatActivity {
                 return extractedPrice;
             }
         }
-
         // Return 0 if no price is found
         return "0.00";
     }
