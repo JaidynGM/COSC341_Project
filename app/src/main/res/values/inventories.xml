@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="vendorName">
+        <item>Buggers BlueBerries</item>
+        <item>Dannys Delights</item>
+        <item>Simple Strawberries</item>
+        <item>Beady Bananas</item>
+    </string-array>
+
+</resources>

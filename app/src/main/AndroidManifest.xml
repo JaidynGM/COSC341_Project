@@ -17,6 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".Cart"
+
+            android:name=".addProduct"
+            android:exported="false" />
+        <activity
+            android:name=".BrowseVendor"
             android:exported="false" />
         <activity
             android:name=".Homepage"
