@@ -36,8 +36,11 @@ public class BrowseVendor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse_vendor);
 
+        // Initialize the review button
+        review = findViewById(R.id.reviewButton); // Replace with your actual button ID
+
         //initialize spinner
-        vendorName = (Spinner) findViewById(R.id.spinner);
+        vendorName = findViewById(R.id.spinner);
 
         //getting the information for spinners
         ArrayAdapter<CharSequence> venname = ArrayAdapter.createFromResource(this, R.array.vendorName,
@@ -48,8 +51,10 @@ public class BrowseVendor extends AppCompatActivity {
 
         //set the adapters
         vendorName.setAdapter(venname);
+
+        // Now you can set the click listener
         review.setOnClickListener(v -> {
-            Intent intent = new Intent(BrowseVendor.this, venderReview.class);
+            Intent intent = new Intent(this, venderReview.class);
             String selectedVendor = vendorName.getSelectedItem().toString();
             intent.putExtra("vendor", selectedVendor);
             startActivity(intent);
