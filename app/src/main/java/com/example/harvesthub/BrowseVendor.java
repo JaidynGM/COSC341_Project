@@ -2,10 +2,13 @@ package com.example.harvesthub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -24,7 +27,9 @@ public class BrowseVendor extends AppCompatActivity {
 
     Spinner vendorName;
     private String selectedAnswer;
+    private Button review;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,14 @@ public class BrowseVendor extends AppCompatActivity {
 
         //set the adapters
         vendorName.setAdapter(venName);
+
+        review = findViewById(R.id.reviewButton);
+        review.setOnClickListener(v -> {
+            Intent intent = new Intent(BrowseVendor.this, venderReview.class);
+            String selectedVendor = vendorName.getSelectedItem().toString();
+            intent.putExtra("vendor", selectedVendor);
+            startActivity(intent);
+        });
     }
 
     public void showInventory(View view) {
