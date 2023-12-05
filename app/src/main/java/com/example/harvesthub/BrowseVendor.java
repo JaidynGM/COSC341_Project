@@ -27,6 +27,7 @@ public class BrowseVendor extends AppCompatActivity {
 
     Spinner vendorName;
     private String selectedAnswer;
+    private String venName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +38,20 @@ public class BrowseVendor extends AppCompatActivity {
         vendorName = (Spinner) findViewById(R.id.spinner);
 
         //getting the information for spinners
-        ArrayAdapter<CharSequence> venName = ArrayAdapter.createFromResource(this, R.array.vendorName,
+        ArrayAdapter<CharSequence> venname = ArrayAdapter.createFromResource(this, R.array.vendorName,
                 android.R.layout.simple_spinner_item);
 
         //allow for the spinners to drop down
-        venName.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        venname.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //set the adapters
-        vendorName.setAdapter(venName);
+        vendorName.setAdapter(venname);
     }
 
     public void showInventory(View view) {
 
         //get the name of vendor to string
-        String venName = vendorName.getSelectedItem().toString();
+        venName = vendorName.getSelectedItem().toString();
 
         String filename = venName + ".txt";
 
@@ -99,12 +100,17 @@ public class BrowseVendor extends AppCompatActivity {
         FileOutputStream outputStream;
 
         //create text file and what contents are to be added
-        String filename = "cart.txt";
-        String filecontents = selectedAnswer + ",";
+        String filecart = "cart.txt";
+        String filecontent = selectedAnswer + ",";
+
+        //create text file for each product to be added to its stores checklist
+        String filecheck = venName + "checklist.txt";
 
         try {
-            outputStream = openFileOutput(filename, Context.MODE_APPEND);
-            outputStream.write(filecontents.getBytes());
+            outputStream = openFileOutput(filecart, Context.MODE_APPEND);
+            outputStream.write(filecontent.getBytes());
+            outputStream = openFileOutput(filecheck, Context.MODE_APPEND);
+            outputStream.write(filecontent.getBytes());
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();
