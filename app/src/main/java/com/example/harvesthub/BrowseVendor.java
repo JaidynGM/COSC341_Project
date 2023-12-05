@@ -2,13 +2,12 @@ package com.example.harvesthub;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -27,9 +27,8 @@ public class BrowseVendor extends AppCompatActivity {
 
     Spinner vendorName;
     private String selectedAnswer;
-    private Button review;
+    private String venName;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,28 +38,20 @@ public class BrowseVendor extends AppCompatActivity {
         vendorName = (Spinner) findViewById(R.id.spinner);
 
         //getting the information for spinners
-        ArrayAdapter<CharSequence> venName = ArrayAdapter.createFromResource(this, R.array.vendorName,
+        ArrayAdapter<CharSequence> venname = ArrayAdapter.createFromResource(this, R.array.vendorName,
                 android.R.layout.simple_spinner_item);
 
         //allow for the spinners to drop down
-        venName.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        venname.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //set the adapters
-        vendorName.setAdapter(venName);
-
-        review = findViewById(R.id.reviewButton);
-        review.setOnClickListener(v -> {
-            Intent intent = new Intent(BrowseVendor.this, venderReview.class);
-            String selectedVendor = vendorName.getSelectedItem().toString();
-            intent.putExtra("vendor", selectedVendor);
-            startActivity(intent);
-        });
+        vendorName.setAdapter(venname);
     }
 
     public void showInventory(View view) {
 
         //get the name of vendor to string
-        String venName = vendorName.getSelectedItem().toString();
+        venName = vendorName.getSelectedItem().toString();
 
         String filename = venName + ".txt";
 
@@ -101,8 +92,31 @@ public class BrowseVendor extends AppCompatActivity {
     }
 
     public void addCart(View view) {
-        TextView test = findViewById(R.id.testView);
-        test.setText(selectedAnswer);
+
+        //create intent, will take products to cart page
+        Intent cart = new Intent(this, Cart.class);
+
+        //define ouputstream
+        FileOutputStream outputStream;
+
+        //create text file and what contents are to be added
+        String filecart = "cart.txt";
+        String filecontent = selectedAnswer + ",";
+
+        //create text file for each product to be added to its stores checklist
+        String filecheck = venName + "checklist.txt";
+
+        try {
+            outputStream = openFileOutput(filecart, Context.MODE_APPEND);
+            outputStream.write(filecontent.getBytes());
+            outputStream = openFileOutput(filecheck, Context.MODE_APPEND);
+            outputStream.write(filecontent.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        startActivity(cart);
     }
 
     private String[] readFromFile(String fileName) {
@@ -136,6 +150,9 @@ public class BrowseVendor extends AppCompatActivity {
     }
 
     public void back (View view){
-        finish();
+
+        Intent back = new Intent(this, Homepage.class);
+        startActivity(back);
+
     }
 }

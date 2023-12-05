@@ -23,4 +23,14 @@ public class Homepage extends AppCompatActivity {
         Intent product = new Intent(this, addProduct.class);
         startActivity(product);
     }
+
+    public void cart (View view){
+        Intent cart = new Intent(this, Cart.class);
+        startActivity(cart);
+    }
+
+    public void checklist (View view){
+        Intent check = new Intent(this, checklist.class);
+        startActivity(check);
+    }
 }
