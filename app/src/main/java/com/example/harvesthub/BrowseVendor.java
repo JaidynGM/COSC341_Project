@@ -121,4 +121,8 @@ public class BrowseVendor extends AppCompatActivity {
         // Convert the list to an array
         return wordList.toArray(new String[0]);
     }
+
+    public void back (View view){
+        finish();
+    }
 }
