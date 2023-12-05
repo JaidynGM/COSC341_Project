@@ -23,9 +23,9 @@
         android:id="@+id/vendorView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="140dp"
+        android:layout_marginStart="84dp"
         android:layout_marginBottom="552dp"
-        android:text="Select a Vendor"
+        android:text=""
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

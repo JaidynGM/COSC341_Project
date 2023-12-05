@@ -3,7 +3,7 @@ package com.example.harvesthub;
 
 public class Review {
     private String name;
-    private int rating;
+    private float rating;
     private String comment;
 
     public Review(String name, int rating, String comment) {
@@ -16,8 +16,8 @@ public class Review {
         return name;
     }
 
-    public int getRating() {
-        return rating;
+    public float getRating() {
+        return (int) rating;
     }
 
     public String getComment() {

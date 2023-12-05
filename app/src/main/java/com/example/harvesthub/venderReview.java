@@ -1,5 +1,6 @@
 package com.example.harvesthub;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -37,19 +38,23 @@ public class venderReview extends AppCompatActivity {
         addReviewButton = findViewById(R.id.addReview);
         backButton = findViewById(R.id.back);
 
+        String selectedVendor = selectedVendor();
+        vendorView.setText("Vendor: " + selectedVendor);
         reviews = getReviewsFromFile();
         adapter = new ReviewAdapter(this, reviews);
+
+
 
         ListView reviewListView = findViewById(R.id.review);
         reviewListView.setAdapter(adapter);
 
-        String selectedVendor = selectedVendor();
-        vendorView.setText("Vendor: " + selectedVendor);
-
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //to be added
+                Intent intent = new Intent(venderReview.this, addReview.class);
+                String selectedVendor = selectedVendor();
+                intent.putExtra("vendor", selectedVendor);
+                startActivity(intent);
             }
         });
 
@@ -57,7 +62,7 @@ public class venderReview extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Change to start new activity
+                finish();
             }
         });
     }
@@ -69,7 +74,7 @@ public class venderReview extends AppCompatActivity {
     private List<Review> getReviewsFromFile() {
         List<Review> reviewList = new ArrayList<>();
         try {
-            InputStream inputStream = getAssets().open("reviews.txt"); // Dir File. Cannot be accessed by user. THis is an android studio thing
+            InputStream inputStream = openFileInput("review.txt"); // Dir File. Cannot be accessed by user. THis is an android studio thing
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
@@ -77,10 +82,10 @@ public class venderReview extends AppCompatActivity {
                 String[] parts = line.split(",");
                 if (parts.length == 3) {
                     String name = parts[0];
-                    int rating = Integer.parseInt(parts[1]);
+                    float rating = Float.parseFloat(parts[1]);
                     String comment = parts[2];
 
-                    reviewList.add(new Review(name, rating, comment));
+                    reviewList.add(new Review(name, (int) rating, comment));
                 }
             }
             reader.close();
@@ -90,14 +95,5 @@ public class venderReview extends AppCompatActivity {
         return reviewList;
     }
 
-    private void addReviewToFile(Review newReview) { // THIS IS NOT WORKING YET
-        try {
-            FileOutputStream outputStream = openFileOutput("reviews.txt", MODE_APPEND);
-            String reviewString = newReview.getName() + "," + newReview.getRating() + "," + newReview.getComment() + "\n";
-            outputStream.write(reviewString.getBytes());
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

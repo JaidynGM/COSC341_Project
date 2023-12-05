@@ -44,6 +44,10 @@
         <activity
             android:name=".venderReview"
             android:exported="false" />
+        <activity
+            android:name=".addReview"
+            android:exported="false" />
+
     </application>
 
 </manifest>
