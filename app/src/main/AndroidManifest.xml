@@ -17,11 +17,14 @@
             android:exported="false" />
         <activity
             android:name=".Cart"
-
+            android:exported="false" />
+        <activity
             android:name=".addProduct"
             android:exported="false" />
         <activity
             android:name=".BrowseVendor"
+            android:exported="false" />
+        <activity
             android:name=".Messaging"
             android:exported="false" />
         <activity
