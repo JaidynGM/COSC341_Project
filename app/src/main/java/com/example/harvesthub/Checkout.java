@@ -104,6 +104,7 @@ public class Checkout extends AppCompatActivity {
             text = "Your order has been successful!";
             Toast toast = Toast.makeText(this, text, duration);
             toast.show();
+            deleteFile("cart.txt");
             startActivity(done);
         }
     }
