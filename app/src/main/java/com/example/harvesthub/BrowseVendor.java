@@ -150,6 +150,9 @@ public class BrowseVendor extends AppCompatActivity {
     }
 
     public void back (View view){
-        finish();
+
+        Intent back = new Intent(this, Homepage.class);
+        startActivity(back);
+
     }
 }

@@ -22,6 +22,7 @@ import java.util.List;
 public class checklist extends AppCompatActivity {
 
     Spinner vendorName;
+    private String venName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +33,20 @@ public class checklist extends AppCompatActivity {
         vendorName = (Spinner) findViewById(R.id.checklist);
 
         //getting the information for spinners
-        ArrayAdapter<CharSequence> venName = ArrayAdapter.createFromResource(this, R.array.vendorName,
+        ArrayAdapter<CharSequence> venname = ArrayAdapter.createFromResource(this, R.array.vendorName,
                 android.R.layout.simple_spinner_item);
 
         //allow for the spinners to drop down
-        venName.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        venname.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         //set the adapters
-        vendorName.setAdapter(venName);
+        vendorName.setAdapter(venname);
     }
 
     public void loadStore (View view){
 
         // Get the name of the vendor as a string
-        String venName = vendorName.getSelectedItem().toString();
+        venName = vendorName.getSelectedItem().toString();
 
         String filename = venName + "checklist.txt";
 
@@ -98,4 +99,16 @@ public class checklist extends AppCompatActivity {
         // Convert the list to an array
         return wordList.toArray(new String[0]);
     }
+
+    public void done (View view){
+
+        deleteFile(venName + "checklist.txt");
+
+        finish();
+    }
+
+    public void back (View view){
+        finish();
+    }
+
 }
