@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -20,10 +21,14 @@ import java.util.List;
 
 public class Cart extends AppCompatActivity {
 
+    public double totalPrice = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+        double totalPrice = 0.0;
 
         String filename = "cart.txt";
 
@@ -40,6 +45,16 @@ public class Cart extends AppCompatActivity {
         for (String word : wordsArray) {
             TableRow row = new TableRow(this);
 
+            // Log the input word for debugging
+            Log.d("WordDebug", "Word: " + word);
+
+            String priceString = extractPrice(word);
+            double price = Double.parseDouble(priceString);
+            totalPrice += price; // Add to the total price
+
+            // Log the extracted price for debugging
+            Log.d("TotalPriceDebug", "Total Price: $" + totalPrice);
+
             // Create a TextView for each word
             TextView textView = new TextView(this);
             textView.setText(word);
@@ -51,7 +66,11 @@ public class Cart extends AppCompatActivity {
             tableLayout.addView(row);
         }
 
+        // Assuming you have a TextView with ID "totalPriceTextView"
+        TextView totalPriceTextView = findViewById(R.id.totalPrice);
+        totalPriceTextView.setText("Total Price: $" + totalPrice + "0");
     }
+
 
     public void checkout (View view){
 
@@ -99,6 +118,21 @@ public class Cart extends AppCompatActivity {
     public void home (View view){
         Intent home = new Intent(this, Homepage.class);
         startActivity(home);
+    }
+
+    private String extractPrice(String input) {
+        String[] words = input.split("\\s+");
+
+        for (String word : words) {
+            if (word.startsWith("$")) {
+                String extractedPrice = word.substring(1); // Remove the "$" symbol
+                Log.d("ExtractedPrice", "Extracted price: " + extractedPrice);
+                return extractedPrice;
+            }
+        }
+
+        // Return 0 if no price is found
+        return "0.00";
     }
 
 }
