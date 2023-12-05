@@ -107,4 +107,8 @@ public class Checkout extends AppCompatActivity {
             startActivity(done);
         }
     }
+
+    public void back (View view){
+        finish();
+    }
 }

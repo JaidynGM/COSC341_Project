@@ -61,8 +61,9 @@ public class Cart extends AppCompatActivity {
         startActivity(check);
     }
 
-    public void shop (View view){
-        finish();
+    public void shop (View view){ //takes you back to browse vendor page
+        Intent shopping = new Intent(this, BrowseVendor.class);
+        startActivity(shopping);
     }
 
     private String[] readFromFile(String fileName) {
