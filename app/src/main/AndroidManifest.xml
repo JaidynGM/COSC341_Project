@@ -47,9 +47,6 @@
         <activity
             android:name=".addReview"
             android:exported="false" />
-        <activity
-            android:name=".DELETE_REVIEW_FILE"
-            android:exported="false" />
 
     </application>
 
