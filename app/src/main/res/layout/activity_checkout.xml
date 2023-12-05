@@ -7,7 +7,7 @@
     tools:context=".Checkout">
 
     <EditText
-        android:id="@+id/lastName9"
+        android:id="@+id/cvv"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.733" />
 
     <EditText
-        android:id="@+id/lastName8"
+        android:id="@+id/date"
         android:layout_width="125dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -33,19 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.733" />
-
-    <EditText
-        android:id="@+id/lastName7"
-        android:layout_width="365dp"
-        android:layout_height="40dp"
-        android:ems="10"
-        android:hint="Card Number"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.675" />
 
     <TextView
         android:id="@+id/textView6"
@@ -61,7 +48,7 @@
         app:layout_constraintVertical_bias="0.61" />
 
     <EditText
-        android:id="@+id/lastName6"
+        android:id="@+id/province"
         android:layout_width="365dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -74,7 +61,7 @@
         app:layout_constraintVertical_bias="0.529" />
 
     <EditText
-        android:id="@+id/lastName5"
+        android:id="@+id/city"
         android:layout_width="365dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -87,7 +74,7 @@
         app:layout_constraintVertical_bias="0.471" />
 
     <EditText
-        android:id="@+id/lastName4"
+        android:id="@+id/postalCode"
         android:layout_width="365dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -100,7 +87,7 @@
         app:layout_constraintVertical_bias="0.413" />
 
     <EditText
-        android:id="@+id/lastName3"
+        android:id="@+id/address3"
         android:layout_width="365dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -113,7 +100,7 @@
         app:layout_constraintVertical_bias="0.356" />
 
     <EditText
-        android:id="@+id/lastName2"
+        android:id="@+id/address1"
         android:layout_width="365dp"
         android:layout_height="40dp"
         android:ems="10"
@@ -182,11 +169,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#756262"
+        android:onClick="checkOut"
         android:text="Checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.894" />
+
+    <EditText
+        android:id="@+id/cardNumber"
+        android:layout_width="365dp"
+        android:layout_height="40dp"
+        android:ems="10"
+        android:hint="Enter Card Number"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.673" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
