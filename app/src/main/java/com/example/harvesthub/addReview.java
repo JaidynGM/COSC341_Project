@@ -49,7 +49,7 @@ public class addReview extends AppCompatActivity {
 //                    Toast.makeText("No data available in the File. Please add some data.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Review newReview = new Review(name, (int) rating, comment);
+            Review newReview = new Review(selectedVendor, name, (int) rating, comment);
             addReviewToFile(newReview);
 
 
@@ -72,7 +72,7 @@ public class addReview extends AppCompatActivity {
     private void addReviewToFile(Review newReview) {
         try {
             FileOutputStream outputStream = openFileOutput("review.txt", MODE_APPEND);
-            String reviewString = newReview.getName() + "," + newReview.getRating() + "," + newReview.getComment() + "\n";
+            String reviewString = newReview.getVendor() + "," + newReview.getName() + "," + newReview.getRating() + "," + newReview.getComment() + "\n";
             outputStream.write(reviewString.getBytes());
             outputStream.close();
         } catch (IOException e) {

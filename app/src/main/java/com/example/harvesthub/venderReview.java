@@ -28,6 +28,7 @@ public class venderReview extends AppCompatActivity {
     private TextView reviewComment;
     private Button addReviewButton;
     private Button backButton;
+    private String selectedVendor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +39,24 @@ public class venderReview extends AppCompatActivity {
         addReviewButton = findViewById(R.id.addReview);
         backButton = findViewById(R.id.back);
 
-        String selectedVendor = selectedVendor();
+        selectedVendor = selectedVendor();
         vendorView.setText("Vendor: " + selectedVendor);
         reviews = getReviewsFromFile();
         adapter = new ReviewAdapter(this, reviews);
 
-
-
         ListView reviewListView = findViewById(R.id.review);
         reviewListView.setAdapter(adapter);
 
-        addReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(venderReview.this, addReview.class);
-                String selectedVendor = selectedVendor();
-                intent.putExtra("vendor", selectedVendor);
-                startActivity(intent);
-            }
+        addReviewButton.setOnClickListener(v -> {
+            Intent intent = new Intent(venderReview.this, addReview.class);
+            String selectedVendor = selectedVendor();
+            intent.putExtra("vendor", selectedVendor);
+            startActivity(intent);
         });
 
-        // Handle back button click
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(venderReview.this, BrowseVendor.class);
+            startActivity(intent);
         });
     }
 
@@ -71,21 +64,25 @@ public class venderReview extends AppCompatActivity {
         return getIntent().getStringExtra("vendor");
     }
 
+
     private List<Review> getReviewsFromFile() {
         List<Review> reviewList = new ArrayList<>();
         try {
-            InputStream inputStream = openFileInput("review.txt"); // Dir File. Cannot be accessed by user. THis is an android studio thing
+            InputStream inputStream = openFileInput("review.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 3) {
-                    String name = parts[0];
-                    float rating = Float.parseFloat(parts[1]);
-                    String comment = parts[2];
+                if (parts.length == 4) {
+                    String vendor = parts[0];
+                    String name = parts[1];
+                    float rating = Float.parseFloat(parts[2]);
+                    String comment = parts[3];
 
-                    reviewList.add(new Review(name, (int) rating, comment));
+                    if (vendor.equals(selectedVendor)) {
+                        reviewList.add(new Review(vendor, name, (int) rating, comment));
+                    }
                 }
             }
             reader.close();
@@ -94,6 +91,5 @@ public class venderReview extends AppCompatActivity {
         }
         return reviewList;
     }
-
 
 }
