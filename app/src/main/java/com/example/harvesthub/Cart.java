@@ -96,4 +96,9 @@ public class Cart extends AppCompatActivity {
         return wordList.toArray(new String[0]);
     }
 
+    public void home (View view){
+        Intent home = new Intent(this, Homepage.class);
+        startActivity(home);
+    }
+
 }
