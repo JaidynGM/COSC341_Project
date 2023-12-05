@@ -19,30 +19,14 @@
         app:layout_constraintVertical_bias="0.099" />
 
     <TableLayout
+        android:id="@+id/cartText"
         android:layout_width="373dp"
         android:layout_height="426dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableLayout>
+        app:layout_constraintVertical_bias="0.354"/>
 
     <TextView
         android:id="@+id/textView2"
@@ -73,6 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#A38282"
+        android:onClick="checkout"
         android:text="Checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -86,6 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#B67D7D"
+        android:onClick="shop"
         android:text="Continue Shopping"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
