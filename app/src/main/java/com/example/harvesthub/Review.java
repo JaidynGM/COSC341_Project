@@ -6,7 +6,7 @@ public class Review {
     private float rating;
     private String comment;
 
-    public Review(String vendor, String name, int rating, String comment) {
+    public Review(String vendor, String name, float rating, String comment) {
         this.vendor = vendor;
         this.name = name;
         this.rating = rating;
@@ -17,7 +17,7 @@ public class Review {
     public String getName() {return name;}
 
     public float getRating() {
-        return (int) rating;
+        return rating;
     }
 
     public String getComment() {

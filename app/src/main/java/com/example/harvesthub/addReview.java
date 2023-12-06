@@ -49,7 +49,7 @@ public class addReview extends AppCompatActivity {
 //                    Toast.makeText("No data available in the File. Please add some data.", Toast.LENGTH_SHORT).show();
                 return;
             }
-            Review newReview = new Review(selectedVendor, name, (int) rating, comment);
+            Review newReview = new Review(selectedVendor, name, rating, comment);
             addReviewToFile(newReview);
 
 

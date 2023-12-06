@@ -81,7 +81,7 @@ public class venderReview extends AppCompatActivity {
                     String comment = parts[3];
 
                     if (vendor.equals(selectedVendor)) {
-                        reviewList.add(new Review(vendor, name, (int) rating, comment));
+                        reviewList.add(new Review(vendor, name, rating, comment));
                     }
                 }
             }
