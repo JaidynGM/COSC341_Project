@@ -42,11 +42,11 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <TextView
-        android:id="@+id/information"
+        android:id="@+id/bio"
         android:layout_width="180dp"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:textSize="20dp"
-        android:text="Bio:\nOccupation:\nProducts:\nRating:"
+        android:text="Name:\nBio:\nOccupation:\nProducts:\nRating:"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintVertical_bias="0.43"
         app:layout_constraintBottom_toBottomOf="parent"

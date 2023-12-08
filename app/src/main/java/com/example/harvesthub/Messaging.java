@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -32,6 +33,8 @@ public class Messaging extends AppCompatActivity {
         Button send = findViewById(R.id.send);
         Button view = findViewById(R.id.viewMessages);
         EditText message = findViewById(R.id.message);
+        TextView info = findViewById(R.id.bio);
+        info.setText("Name: " + venName + "\nBio:\nOccupation:\nProducts:\nRating:");
 
         //Back button goes back to previous screen
         back.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +56,10 @@ public class Messaging extends AppCompatActivity {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readMessageFromFile(venName);
+                List<String> messages = readMessageFromFile(venName);
+                for (String s:messages) {
+                    message.append(s);
+                };
             }
         });
     }
@@ -63,7 +69,7 @@ public class Messaging extends AppCompatActivity {
 
         //File names
         String messageFile = "message.txt";
-        String sentMessage = message.getText().toString() + "\n";
+        String sentMessage = "You: " + message.getText().toString() + "\n";
 
         //Try adding the string into the file, appending if needed
         try {
